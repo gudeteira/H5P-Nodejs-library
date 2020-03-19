@@ -36,9 +36,8 @@ export default class EditorConfig implements IEditorConfig {
     public enableLrsContentTypes: boolean = true;
     public fetchingDisabled: 0 | 1 = 0;
     public h5pVersion: string = '1.24.0';
-    public hubContentTypesEndpoint: string =
-        'https://api.h5p.org/v1/content-types/';
-    public hubRegistrationEndpoint: string = 'https://api.h5p.org/v1/sites';
+    public hubContentTypesEndpoint: string = '';
+    public hubRegistrationEndpoint: string = '';
     public librariesUrl: string = '/libraries';
     public libraryWhitelist: string = 'js css';
     public lrsContentTypes: string[] = [

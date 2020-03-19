@@ -606,7 +606,7 @@ export default class H5PEditor {
             },
             ajaxPath: `${this.config.baseUrl}${this.config.ajaxUrl}?action=`,
             editor: this.getEditorIntegration(contentId),
-            hubIsEnabled: true,
+            hubIsEnabled: false,
             l10n: {
                 H5P: this.clientTranslation
             },
