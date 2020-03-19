@@ -1,10 +1,10 @@
 {
     "name": "h5p-nodejs-library",
-    "version": "v0.7.0",
+    "version": "v1.1.2",
     "description": "The H5P-Nodejs-library is a port of the H5P-Editor-PHP-library and the H5P-PHP-Library for Nodejs.",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Lumieducation/H5P-Nodejs-library"
+        "url": "https://github.com/gudeteira/H5P-Nodejs-library"
     },
     "scripts": {
         "start": "./node_modules/.bin/ts-node examples/express.ts",
