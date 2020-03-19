@@ -149,22 +149,26 @@ export default class H5PPlayer {
 
             loaded[key] = true;
             const lib = libraries[key];
-            this.loadAssets(
-                lib.preloadedDependencies || [],
-                assets,
-                libraries,
-                loaded
-            );
-            (lib.preloadedCss || []).forEach(asset =>
-                assets.styles.push(
-                    this.urlGenerator.libraryFile(dependency, asset.path)
-                )
-            );
-            (lib.preloadedJs || []).forEach(script =>
-                assets.scripts.push(
-                    this.urlGenerator.libraryFile(dependency, script.path)
-                )
-            );
+            if (lib) {
+                this.loadAssets(
+                    lib.preloadedDependencies || [],
+                    assets,
+                    libraries,
+                    loaded
+                );
+                (lib.preloadedCss || []).forEach(asset =>
+                    assets.styles.push(
+                        this.urlGenerator.libraryFile(dependency, asset.path)
+                    )
+                );
+                (lib.preloadedJs || []).forEach(script =>
+                    assets.scripts.push(
+                        this.urlGenerator.libraryFile(dependency, script.path)
+                    )
+                );
+            } else {
+                log.error(`Library ${key} not found`)
+            }
         });
     }
 
@@ -192,11 +196,16 @@ export default class H5PPlayer {
 
                             return this.loadLibrary(name, majVer, minVer).then(
                                 lib => {
-                                    loaded[key] = lib;
-                                    this.loadLibraries(
-                                        lib.preloadedDependencies || [],
-                                        loaded
-                                    ).then(() => rslv());
+                                    if (lib) {
+                                        loaded[key] = lib;
+                                        this.loadLibraries(
+                                            lib.preloadedDependencies || [],
+                                            loaded
+                                        ).then(() => rslv());
+                                    } else {
+                                        log.error(`Library ${key} not found`);
+                                        rslv()
+                                    }
                                 }
                             );
                         })
